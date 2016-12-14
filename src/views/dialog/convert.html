@@ -1,0 +1,94 @@
+<md-dialog class="convert" aria-label="List dialog">
+  <form name="convertForm">
+    <md-dialog-content>
+      <md-content>
+        <md-toolbar ng-if="compatibles.length != 0" class="md-warn">
+          <md-list flex ng-if="compatibles.length != 0" class="md-warn">
+            <md-list-item ng-repeat="compatible in compatibles" ng-click="null">
+              <div class="md-list-item-text" layout="column">
+                <span class="compatible">{{compatible}}</span>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-toolbar>
+        <md-input-container class="md-block">
+          <label>Environment</label>
+          <md-select name="environment"
+            ng-model="config.environment"
+            ng-required="true">
+            <md-option ng-repeat="environment in ['ruby', 'python']" ng-value="environment">{{environment | capitalize}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">実行環境の選択</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Platform Name</label>
+          <md-select name="platformName"
+            ng-model="config.platformName"
+            ng-required="true"
+            ng-change="onPlatformNameChange(config.platformName)">
+            <md-option ng-repeat="platformName in ['chrome', 'firefox', 'android']" ng-value="platformName">{{platformName | capitalize}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">プラットフォームの選択</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block margin-0" ng-if="config.platformName == 'android'">
+          <label>Platform Version</label>
+          <input type="text" name="platformVersion" placeholder="ex: 4.4"
+            ng-init="config.platformVersion = ''"
+            ng-model="config.platformVersion"
+            ng-change="onVersionChange(config.platformVersion)"
+            ng-pattern="/^[\d]\.[\d]$/"
+            ng-required="true">
+          <md-tooltip md-direction="bottom" md-delay="1000">プラットフォームのバージョン</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block" ng-if="config.platformName == 'android'">
+          <label>Automation Name</label>
+          <md-select name="automationName"
+            ng-init="config.automationName = 'Appium'"
+            ng-model="config.automationName"
+            ng-change="onAutomationNameChange(config.automationName)"
+            ng-required="true">
+            <md-option ng-repeat="automationName in automationNames">{{automationName}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">自動化ツール名</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block" ng-if="config.platformName == 'android'">
+          <label>Browser Name</label>
+          <md-select name="browserName"
+            ng-init="config.browserName = 'Chrome'"
+            ng-model="config.browserName"
+            ng-change="onBrowserNameChange(config.browserName)"
+            ng-required="true">
+            <md-option ng-repeat="browserName in browserNames">{{browserName}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">使用するブラウザ</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block margin-0">
+          <label>Wait Timeout</label>
+          <input type="number" name="waitTimeout"
+            ng-model="config.waitTimeout"
+            ng-required="true">
+          <md-tooltip md-direction="bottom" md-delay="1000">要素取得時のタイムアウト時間</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block margin-0" ng-if="config.platformName == 'firefox' || config.platformName == 'chrome'">
+          <label>Download Directory</label>
+          <input type="text" name="downloadDir" placeholder="ex: downloads"
+            ng-init="config.downloadDir = ''"
+            ng-model="config.downloadDir">
+          <md-tooltip md-direction="bottom" md-delay="1000">ダウンロードの保存先(実行中のパスから)</md-tooltip>
+        </md-input-container>
+        <md-input-container class="md-block margin-0" ng-if="config.platformName == 'chrome'">
+          <md-checkbox name="allRangeScreenshot" label="All Range Screenshot"
+            ng-init="config.allRangeScreenshot = false"
+            ng-model="config.allRangeScreenshot">
+            All Range Screenshot
+          </md-checkbox>
+          <md-tooltip md-direction="bottom" md-delay="1000">全ての範囲のスクリーンショットを撮る</md-tooltip>
+        </md-input-container>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="close()">Close</md-button>
+      <md-button ng-disabled="convertForm.$invalid" ng-click="close(config)">OK</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

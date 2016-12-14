@@ -1,0 +1,29 @@
+<md-menu md-position-mode="left bottom" ng-repeat="menu in menus">
+  <button ng-click="$mdOpenMenu()">{{menu.category}}</button>
+  <md-menu-content class="md-menu-bar-menu md-dense">
+    <md-menu-item ng-repeat="StepClass in menu.steps">
+      <md-button ng-click="addStepClass(StepClass, menu.category == 'Element')" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+        <md-tooltip md-direction="bottom" md-delay="150" ng-if="showTooltip">
+          <div layout="row">
+            <div>
+              {{StepClass.Tips.Description}}
+            </div>
+            <div class="correspondence">
+              <i ng-if="StepClass.Correspondence.chrome" class="chrome fa fa-chrome" aria-hidden="true"></i>
+              <!-- <img ng-if="StepClass.Correspondence.chrome" class="browser-icon" src="/build/images/chrome.png" alt="chrome"/> -->
+            </div>
+            <div class="correspondence">
+              <i ng-if="StepClass.Correspondence.firefox" class="firefox fa fa-firefox" aria-hidden="true"></i>
+              <!-- <img ng-if="StepClass.Correspondence.firefox" class="browser-icon" src="/build/images/firefox.png" alt="firefox"/> -->
+            </div>
+            <div class="correspondence">
+              <i ng-if="StepClass.Correspondence.android" class="android fa fa-android" aria-hidden="true"></i>
+              <!-- <img ng-if="StepClass.Correspondence.android" class="browser-icon" src="/build/images/android.png" alt="android"/> -->
+            </div>
+          </div>
+        </md-tooltip>
+        {{StepClass.Name}}
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>

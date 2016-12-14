@@ -1,0 +1,6 @@
+<md-content ui-tree="treeOptions">
+  <ol ui-tree-nodes="" ng-model="StepService.steps" id="tree-root">
+    <li ng-repeat="step in StepService.steps" ui-tree-node ng-include="'includes/step.html'">
+    </li>
+  </ol>
+</md-content>

@@ -1,0 +1,95 @@
+<md-card class="detail {{step.nodes ? 'parent' : ''}} {{step.action == 'NativeCommentStep' ? 'comment' : ''}} {{StepService.selectedScopes.indexOf(this) != -1 ? 'selected' : ''}}" ng-click="StepService.selectScope(this, $event)">
+  <div layout="row" class="actions">
+    <div flex="80" ui-tree-handle class="name handle">
+      <h3>
+        {{Step[step.action].Name}}
+        <md-tooltip md-direction="right" md-delay="1000">{{Step[step.action].Tips.Description}}</md-tooltip>
+      </h3>
+    </div>
+    <div flex="5">
+      <i ng-if="Step[step.action].Correspondence.chrome" class="chrome fa fa-chrome" aria-hidden="true"></i>
+      <md-tooltip md-direction="left" md-delay="1000">Chromeで使用可</md-tooltip>
+    </div>
+    <div flex="5">
+      <i ng-if="Step[step.action].Correspondence.firefox" class="firefox fa fa-firefox" aria-hidden="true"></i>
+      <md-tooltip md-direction="left" md-delay="1000">Firefoxで使用可</md-tooltip>
+    </div>
+    <div flex="5">
+      <i ng-if="Step[step.action].Correspondence.android" class="android fa fa-android" aria-hidden="true"></i>
+      <md-tooltip md-direction="left" md-delay="1000">Androidで使用可</md-tooltip>
+    </div>
+    <div flex="5" class="delete">
+      <md-button class="md-warn md-secondary" ng-click="StepService.deleteStep(this)">
+        <md-tooltip md-direction="left">削除</md-tooltip>
+        <md-icon>clear</md-icon>
+      </md-button>
+    </div>
+  </div>
+  <md-grid-list md-cols="4" md-row-height="45px" class="params">
+    <md-grid-tile md-colspan="1" ng-repeat="(index, input) in step.params | objectSelect:'type':['text', 'number', 'check', 'select'] | orderObjectBy:'index'" ng-init="key = input['__key']" class="param">
+      <div ng-if="input.type == 'text' || input.type == 'number'" class="{{input.type}}">
+        <md-input-container flex-gt-sm="">
+          <label>{{key}}</label>
+          <input type="{{input.type}}" ng-model="input.value" ng-model-options="{ updateOn: 'blur' }" ng-change="StepService.saveSteps(StepService.steps)">
+          <md-tooltip md-direction="bottom" md-delay="1000">{{Step[step.action].Tips.Params[key]}}</md-tooltip>
+        </md-input-container>
+      </div>
+      <div ng-if="input.type == 'check'" class="{{input.type}}">
+        <md-checkbox ng-model="input.value" ng-change="StepService.saveSteps(steps)" label="{{key}}">
+          {{key}}
+          <md-tooltip md-direction="bottom" md-delay="1000">{{Step[step.action].Tips.Params[key]}}</md-tooltip>
+        </md-checkbox>
+      </div>
+      <div ng-if="input.type == 'select'" class="{{input.type}}">
+        <md-input-container>
+          <label>{{key}}</label>
+          <md-select ng-model="input.value" ng-change="StepService.saveSteps(steps)">
+            <md-option ng-repeat="item in input.items">{{item}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">{{Step[step.action].Tips.Params[key]}}</md-tooltip>
+        </md-input-container>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
+  <div ng-repeat="(index, input) in step.params | objectSelect:'type':['array', 'hash'] | orderObjectBy:'index'" ng-init="key = input['__key']" class="nested_params">
+    <div ng-if="input.type == 'array'" class="{{input.type}}">
+      <md-grid-list md-cols="4" md-row-height="70px">
+        <md-grid-tile md-colspan="1" ng-repeat="(index, item) in input.value track by $index">
+          <md-input-container flex-gt-sm="">
+            <label>value{{index+1}}</label>
+            <input type="text" ng-model="input.value[index]" ng-model-options="{ updateOn: 'blur' }" ng-change="StepService.saveSteps(steps)">
+            <md-icon ng-click="input.value.splice(input.value.indexOf(item), 1);StepService.saveSteps(steps)">clear</md-icon>
+            <md-tooltip md-direction="bottom" md-delay="1000">{{Step[step.action].Tips.Params[key]}}{{index+1}}</md-tooltip>
+          </md-input-container>
+        </md-grid-tile>
+        <md-grid-tile md-colspan="1">
+          <md-icon ng-click="input.value.push('');StepService.saveSteps(steps)">add</md-icon>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+    <div ng-if="input.type == 'hash'" class="{{input.type}}">
+      <md-grid-list md-cols="4" md-row-height="70px">
+        <md-grid-tile md-colspan="2" ng-repeat="(index, item) in input.value track by $index">
+          <md-input-container flex-gt-sm="">
+            <label>key</label>
+            <input type="text" ng-model="item[0]" ng-model-options="{ updateOn: 'blur' }" ng-change="StepService.saveSteps(steps)">
+            <md-tooltip md-direction="bottom" md-delay="1000">キー</md-tooltip>
+          </md-input-container>
+          <md-input-container flex-gt-sm="">
+            <label>value</label>
+            <input type="text" ng-model="item[1]" ng-model-options="{ updateOn: 'blur' }" ng-change="StepService.saveSteps(steps)">
+            <md-tooltip md-direction="bottom" md-delay="1000">値</md-tooltip>
+            <md-icon ng-click="input.value.splice(input.value.indexOf(item), 1);StepService.saveSteps(steps)">clear</md-icon>
+          </md-input-container>
+        </md-grid-tile>
+        <md-grid-tile md-colspan="2">
+          <md-icon ng-click="input.value.push(['key', 'value']);StepService.saveSteps(steps)">add</md-icon>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </div>
+  <ol ng-if="step.nodes" ui-tree-nodes="" ng-model="step.nodes">
+    <li ng-repeat="step in step.nodes" ui-tree-node ng-include="'includes/step.html'">
+    </li>
+  </ol>
+</md-card>

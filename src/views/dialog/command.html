@@ -1,0 +1,34 @@
+<md-dialog class="command" aria-label="List dialog">
+  <md-dialog-content>
+    <md-content ng-if="preparations.length != 0">
+      <h2 class="md-title">事前準備</h2>
+      <ul>
+        <li ng-repeat="preparation in preparations">{{preparation}}</li>
+      </ul>
+    </md-content>
+    <md-content ng-if="runCommands.length != 0">
+      <h2 class="md-title">実行</h2>
+      <div ng-repeat="run in runCommands">
+        <ul>
+          <li ng-repeat="description in run.descriptions">{{description}}</li>
+        </ul>
+        <md-card class="command-line">
+          <md-card-content>
+            <p>$ {{run.command}}</p>
+          </md-card-content>
+        </md-card>
+      </div>
+    </md-content>
+    <!-- <md-content ng-if="exitCommands.length != 0">
+      <h2 class="md-title">下記コマンドで終了します。</h2>
+      <md-card class="command-line">
+        <md-card-content>
+          <p ng-repeat="command in exitCommands">$ {{command}}</p>
+        </md-card-content>
+      </md-card>
+    </md-content> -->
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="close()">Close</md-button>
+  </md-dialog-actions>
+</md-dialog>

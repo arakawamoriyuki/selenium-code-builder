@@ -1,0 +1,10 @@
+/bower_components
+/node_modules
+
+/vendor
+composer.phar
+composer.lock
+
+/build
+
+.DS_Store

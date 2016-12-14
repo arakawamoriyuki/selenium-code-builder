@@ -1,0 +1,19 @@
+<md-dialog aria-label="List dialog">
+  <form name="singletonForm">
+    <md-dialog-content>
+      <md-content>
+        <md-input-container class="md-block">
+          <label>langage</label>
+          <md-select ng-init="langage = 'Ruby'" ng-model="langage" name="langage" ng-required="true">
+            <md-option ng-repeat="lang in ['Ruby', 'Python']">{{lang}}</md-option>
+          </md-select>
+          <md-tooltip md-direction="bottom" md-delay="1000">実行環境の選択</md-tooltip>
+        </md-input-container>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="close()">Close</md-button>
+      <md-button ng-disabled="singletonForm.$invalid" ng-click="close(langage)">OK</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

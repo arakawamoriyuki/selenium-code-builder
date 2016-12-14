@@ -1,0 +1,199 @@
+<md-dialog class="howtouse" aria-label="dialog">
+  <md-dialog-content>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Selenium Code Builder">
+          <md-content class="md-padding">
+            <md-list>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Step</h3>
+                  <p>ステップとは、実行する作業の単位です。</p>
+                  <p>NavigationやElementなどのメニューからステップを追加することができます</p>
+                  <p>実行するステップの各パラメータを編集し、複数のステップを組み合わせて、テストコードを組み立てていきます</p>
+                  <p>一部を除き、各パラメータは#{変数名}で変数を展開できます</p>
+                  <p>Deleteボタンで削除、ステップ名をドラッグすることで位置を変更できます</p>
+                  <p>Native->Ifなどの青い色のステップはドラッグで子を作ることができます</p>
+                  <p>現在選択中のステップは赤い色で表示されます</p>
+                  <p>Shiftを押下中に選択することで複数のステップを選択できます</p>
+                  <p>Ctrl+Cで選択中のステップをコピー、Ctrl+Vで最後に選択したステップの下にペーストできます</p>
+                  <p>また、Ctrl+ZやCtrl+Shift+Zで、操作を取り消したりやり直したりすることができます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Rec Start</h3>
+                  <p>Menu->Rec Startでブラウザ操作を記録することができます</p>
+                  <p>記録できるステップは、URLの移動、クリック、フィールドへの入力です</p>
+                  <ul>
+                    <li>URLの移動</li>
+                    <li>クリック</li>
+                    <li>ダブルクリック</li>
+                    <li>入力 (input[type=text,textarea])</li>
+                    <li>チェック (input[type=checkbox,radio])</li>
+                    <li>選択 (select)</li>
+                  </ul>
+                  <p>記録後はRec Stopで記録を停止してください</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">File</h3>
+                  <p>組み立てたステップをjson形式で保存することができます</p>
+                  <p>Menu->File->Saveで保存、Menu->File->Openで開きます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Convert</h3>
+                  <p>組み立てたステップをテストコードに変換します</p>
+                  <p>実行する言語とブラウザを選択し、テストコードをダウンロードしてください</p>
+                  <p>セキュリティ上の問題でテストコードはtxt形式でダウンロードされます(単体での実行はできますが条件次第で動かないので拡張子を変更してください)</p>
+                  <p>ダウンロードしたテストコードを下記コマンドで実行できます</p>
+                  <p>$ ruby sample.rb</p>
+                  <p>$ python sample.py</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Singleton Webdriver</h3>
+                  <p>細かいタスクごとにテストコードを作成したい場合この機能が有効です</p>
+                  <p>ダウンロードしたファイルを実行するテストコードと同じ場所に置いてください</p>
+                  <p>通常、Native -> Importステップは個々のテストコード毎に新しいブラウザ(新しいwebdriverのインスタンス)を作成してしまいます</p>
+                  <p>この機能を利用してImportすると、同じブラウザ(同じwebdriverのインスタンス)から個々のテストコードを実行する事ができます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Navigation</h3>
+                  <p>URL操作に関するステップを作成できます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Element</h3>
+                  <p>要素の操作に関するステップを作成できます</p>
+                  <p>選択後、ブラウザ上で操作したい要素をクリックしてください</p>
+                  <p>クリックで要素を取得できない場合、Ctrl + Shift + Enterで要素を取得できます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Browser</h3>
+                  <p>ブラウザ操作に関するステップを作成できます</p>
+                  <p>スクリーンショットの取得やスクロール操作などがあります</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Native</h3>
+                  <p>条件分岐やループなど高度な操作を行うステップを作成できます</p>
+                  <p>IfやEachなどは子を作成することができます</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">Verify</h3>
+                  <p>検証を行うステップを作成できます</p>
+                  <p>検証結果はコマンドライン上に表示されます</p>
+                </div>
+              </md-list-item>
+            </md-list>
+          </md-content>
+        </md-tab>
+        <md-tab label="Ruby">
+          <md-content class="md-padding">
+            <md-list>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">selenium-webdriver</h3>
+                  <p>ブラウザ操作をするSeleniumをinstallします</p>
+                  <p>$ gem install selenium-webdriver</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">chromedriver</h3>
+                  <p>SeleniumでChromeを操作する為にchromedriverをinstallします</p>
+                  <p>Macの場合、下記コマンドで</p>
+                  <p>$ brew install chromedriver</p>
+                  <p>もしくは<a href="http://chromedriver.storage.googleapis.com/index.html">こちら</a>から現時点の最新(v2.9)をダウンロードしてパスを通してください</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">imagemagick</h3>
+                  <p>Firefox以外のブラウザでスクリーンショットを撮る場合、見えてる範囲しか撮れません</p>
+                  <p>画面全体を撮る為にimagemagickをinstallします</p>
+                  <p>Macの場合、下記コマンドで</p>
+                  <p>$ brew install imagemagick</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">rmagic</h3>
+                  <p>Rubyでimagemagicを使用する為rmagickをinstallします</p>
+                  <p>$ gem install rmagick</p>
+                </div>
+              </md-list-item>
+            </md-list>
+          </md-content>
+        </md-tab>
+        <md-tab label="Python">
+          <md-content class="md-padding">
+            <md-list>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">python</h3>
+                  <p><a href="https://www.python.org/downloads/">こちら</a>からpython2.x系をダウンロードし、installしてください。</p>
+                  <p>PythonとPython/Scriptsにパスを通してください</p>
+                  <p>下記コマンドでpythonが使えることを確認してください</p>
+                  <p>$ python --version</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">easy_install</h3>
+                  <p>pythonのライブラリをインストールできるツールです</p>
+                  <p><a href="https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py">こちら</a>をダウンロードし、pythonで実行してください</p>
+                  <p>$ python ez_setup.py</p>
+                  <p>実行後、easy_installが使えることを確認してください</p>
+                  <p>$ easy_install --version</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">selenium</h3>
+                  <p>ブラウザ操作をするSeleniumをinstallします</p>
+                  <p><a href="https://pypi.python.org/pypi/selenium">こちら</a>をダウンロードし、中のsetup.pyでinstallしてください</p>
+                  <p>$ python setup.py install</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">chromedriver</h3>
+                  <p>SeleniumでChromeを操作する為にchromedriverをinstallします</p>
+                  <p>Macの場合、下記コマンドで</p>
+                  <p>$ brew install chromedriver</p>
+                  <p>もしくは<a href="http://chromedriver.storage.googleapis.com/index.html">こちら</a>から現時点の最新(v2.9)をダウンロードしてパスを通してください</p>
+                </div>
+              </md-list-item>
+              <md-list-item>
+                <div>
+                  <h3 class="md-title">pillow</h3>
+                  <p>Firefox以外のブラウザでスクリーンショットを撮る場合、見えてる範囲しか撮れません</p>
+                  <p>画面全体を撮る為にpillowをinstallします</p>
+                  <p>$ easy_install pillow</p>
+                </div>
+              </md-list-item>
+            </md-list>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button ng-click="close()">Close</md-button>
+  </md-dialog-actions>
+</md-dialog>

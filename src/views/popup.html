@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja" ng-app="app">
+<head>
+  <title>Selenium Code Builder</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1;">
+  <link rel="stylesheet" href="/build/lib/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="/build/lib/angular-ui-tree/dist/angular-ui-tree.min.css">
+  <link rel="stylesheet" href="/build/lib/angular-hotkeys/build/hotkeys.min.css">
+  <link rel="stylesheet" href="/build/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/build/css/popup.min.css"/>
+  <script src="/build/lib/jquery/dist/jquery.min.js"></script>
+  <script src="/build/lib/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/build/lib/angular/angular.min.js"></script>
+  <script src="/build/lib/angular-aria/angular-aria.min.js"></script>
+  <script src="/build/lib/angular-animate/angular-animate.min.js"></script>
+  <script src="/build/lib/angular-material/angular-material.min.js"></script>
+  <script src="/build/lib/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+  <script src="/build/lib/angular-hotkeys/build/hotkeys.min.js"></script>
+  <script src="/build/js/classes.min.js"></script>
+  <script src="/build/js/angular/app.min.js"></script>
+  <script src="/build/js/angular-modules.min.js"></script>
+  <script src="/build/js/angular-controllers.min.js"></script>
+</head>
+<body ng-controller="PopupController as popup" ng-cloak layout="column" layout-fill>
+
+  <header class='md-medium-tall'>
+    <md-menu-bar>
+
+      <md-menu md-position-mode="left bottom">
+        <button ng-click="$mdOpenMenu()">Menu</button>
+        <md-menu-content class="md-menu-bar-menu md-dense">
+          <md-menu-item>
+            <md-button ng-click="popup.howToUse()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">使い方</md-tooltip>
+              How to use
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-disabled="popup.isRec()" ng-click="popup.recStart()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">ブラウザ操作の記録開始</md-tooltip>
+              Rec Start
+              <md-icon class="md-warn md-secondary">fiber_manual_record</md-icon>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-disabled="!popup.isRec()" ng-click="popup.recStop()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">記録終了</md-tooltip>
+              Rec Stop
+              <md-icon>stop</md-icon>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="popup.reset()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">全ステップを破棄</md-tooltip>
+              Reset
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-menu>
+              <md-button ng-click="$mdOpenMenu()">File</md-button>
+              <md-menu-content>
+                <md-menu-item>
+                  <md-button ng-click="popup.open()">
+                    Open
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-click="popup.export()">
+                    Save
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="popup.openConvertDialog()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">テストコードに変換</md-tooltip>
+              Convert
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="popup.openSingletonDialog()" ng-mouseenter="showTooltip = true" ng-mouseover="showTooltip = false">
+              <md-tooltip md-direction="right" ng-if="showTooltip">複数のテストコードを同じWebdriverを使って実行する</md-tooltip>
+              Singleton Webdriver
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <!-- stepMenu.js directive -->
+      <step-menu></step-menu>
+
+      <md-input-container md-no-float="">
+        <input ng-model="selector" type="text" placeholder="Selector">
+        <md-tooltip md-direction="bottom" md-delay="1000">ページ内の要素をセレクタで検索する</md-tooltip>
+        <md-icon ng-click="popup.searchElement(selector)">search</md-icon>
+      </md-input-container>
+
+    </md-menu-bar>
+  </header>
+
+  <md-content flex class="steps">
+    <!-- stepTree.js directive -->
+    <step-tree></step-tree>
+  </md-content>
+
+  <!-- <footer flex></div> -->
+</body>
+</html>

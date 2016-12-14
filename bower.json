@@ -1,0 +1,27 @@
+{
+  "name": "selenium-code-builder",
+  "description": "== README",
+  "main": "index.js",
+  "authors": [
+    "新川 盛幸 <arakawamoriyuki@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "jquery-ui": "^1.11.4",
+    "angular": "1.4.9",
+    "angular-ui-tree": "^2.15.0",
+    "angular-material": "^1.0.5",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
+    "font-awesome": "^4.7.0"
+  }
+}

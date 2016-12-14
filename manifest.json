@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "minimum_chrome_version": "31",
+  "name": "Selenium Code Builder",
+  "description": "TODO",
+  "version": "0.1",
+  "icons": {
+    "16": "/build/images/icon.png",
+    "48": "/build/images/icon.png",
+    "128": "/build/images/icon.png"
+  },
+  "background": {
+    "scripts": [
+      "/build/js/background.min.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "/build/images/icon.png",
+    "default_title": "Selenium Code Builder",
+    "default_popup": "/src/views/start.html"
+  },
+  "permissions": [
+    "tabs",
+    "*://*/*",
+    "storage",
+    "downloads",
+    "webNavigation"
+  ]
+}

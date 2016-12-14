@@ -1,0 +1,92 @@
+body
+  header
+    border-bottom: 1px solid #dddddd
+    md-menu-bar
+      md-input-container
+        margin: 0
+        height: 33px
+  md-content
+    &.steps
+      padding-bottom: 100px
+      .angular-ui-tree
+        .angular-ui-tree-empty
+          border: none
+          background-color: inherit
+        .angular-ui-tree-nodes
+          &#tree-root
+            margin: 0
+          .angular-ui-tree-node
+            md-card
+              .actions
+                .browser-icon
+                  height: 20px
+                  width: 20px
+                .name
+                  h3
+                    font-size: 15px
+                    margin: 8px 15px
+                .delete
+                  button
+                    margin: 0
+                    padding: 0
+                    min-width: 10px
+                    width: 100%
+              .params
+                .param
+                  md-input-container
+                    margin: 0
+                    margin-top: 10px
+                  .text, .number
+                    label
+                      bottom: 52px
+                  .check
+                  .select
+                    label
+                      bottom: 27px
+                    md-select
+                      width: 126px
+                    margin: 0
+                    margin-top: -25px
+              .nested_params
+                .array
+                .hash
+
+md-dialog
+  &.howtouse
+    width: 100%
+  &.convert
+    md-input-container
+      &.margin-0
+        margin: 0
+    md-toolbar.md-warn
+      .compatible
+        font-size: 13px
+  &.command
+    md-content
+      padding: 12px
+
+md-backdrop
+  height: 100% !important
+
+md-card
+  &.parent
+    background-color: #f0ffff
+  &.comment
+    background-color: #f2f2f2
+  &.selected
+    background-color: #fff0ff
+  &.command-line
+    background-color: gray
+    color: white
+
+i.fa
+  font-size: 18px
+  color: gray
+
+md-tooltip
+  .correspondence
+    padding: 0px 5px
+    i
+      color: white
+      height: 20px
+      width: 20px
