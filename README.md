@@ -102,7 +102,7 @@ $ java -jar selendroid-standalone-0.17.0-with-dependencies.jar
 
 - chromedriver
 [こちら](http://chromedriver.storage.googleapis.com/index.html)からchromedriverをダウンロードしてパスを通してください。
-2.9はmac,windows共に確認済み。2.15はmac確認済み。現時点最新の2.19 ~ 2.21は動きませんでした。
+2.9はmac,windows共に確認済み。2.15はmac確認済み。~~現時点最新の2.19 ~ 2.21は動きませんでした。~~ 2.28で動作確認済み。
 
 ### Pythonで実行する場合
 
