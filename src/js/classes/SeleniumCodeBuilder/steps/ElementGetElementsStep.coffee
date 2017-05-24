@@ -1,8 +1,8 @@
-class SeleniumCodeBuilder.Step.ElementGetStep extends SeleniumCodeBuilder.Step
+class SeleniumCodeBuilder.Step.ElementGetElementsStep extends SeleniumCodeBuilder.Step
 
-  @Name: 'Get'
+  @Name: 'Get Elements'
   @Tips:
-    Description: '要素を取得する(取れない場合NULL)'
+    Description: '複数の要素を取得する(取れない場合NULL)'
     Params:
       location:   'CSSセレクタ'
       variable:   '変数名'
@@ -23,14 +23,14 @@ class SeleniumCodeBuilder.Step.ElementGetStep extends SeleniumCodeBuilder.Step
       when "ruby"
         return """
 #{tab}begin
-#{tab}  #{@params['variable'].value} = _wait.until { _driver.find_element(css: #{@params['location'].value}) }
+#{tab}  #{@params['variable'].value} = _wait.until { _driver.find_elements(css: #{@params['location'].value}) }
 #{tab}rescue => e
 #{tab}end
 """
       when "python"
         return """
 #{tab}try:
-#{tab}  #{@params['variable'].value} = _wait.until(lambda _driver: _driver.find_element(By.CSS_SELECTOR, #{@params['location'].value}))
+#{tab}  #{@params['variable'].value} = _wait.until(lambda _driver: _driver.find_elements(By.CSS_SELECTOR, #{@params['location'].value}))
 #{tab}except:
 #{tab}  #{@params['variable'].value} =  None
 """

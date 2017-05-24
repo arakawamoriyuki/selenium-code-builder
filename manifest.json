@@ -3,7 +3,7 @@
   "minimum_chrome_version": "31",
   "name": "Selenium Code Builder",
   "description": "TODO",
-  "version": "0.1",
+  "version": "0.2",
   "icons": {
     "16": "/build/images/icon.png",
     "48": "/build/images/icon.png",

@@ -210,7 +210,7 @@ class SeleniumCodeBuilder
     # dragAndDropEventCancel = do ()=>
     #   getStep = null
     #   dragEventCancel = @addEventListenerSelector('dragstart', (eventName, event, selector, element) =>
-    #     getStep = new SeleniumCodeBuilder.Step.ElementGetStep
+    #     getStep = new SeleniumCodeBuilder.Step.ElementGetElementStep
     #     getStep.params.location.value = selector
     #     getStep.params.variable.value = 'dragarea'
     #     @addStep(getStep)
