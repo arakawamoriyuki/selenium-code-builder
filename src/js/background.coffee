@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) =>
 chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) =>
   if changeInfo.status == 'loading'
     reloadExtension = (id, rec = false) =>
-      chrome.tabs.executeScript id, {file: 'build/js/classes.js'}, (result)=>
+      chrome.tabs.executeScript id, {file: 'build/js/classes.min.js'}, (result)=>
         chrome.tabs.executeScript id, {code: "if (!SeleniumCodeBuilder.recCancel) SeleniumCodeBuilder.recCancel = SeleniumCodeBuilder.rec();"} if rec
     chrome.storage.local.get 'startTabId', (data) =>
       reloadExtension(tabId, false) if data.startTabId? and data.startTabId == tabId
